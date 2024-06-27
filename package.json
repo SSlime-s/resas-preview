@@ -10,7 +10,8 @@
 		"lint:fix": "pnpm run lint --fix",
 		"format:base": "prettier src/ .eslintrc.cjs .prettierrc.mjs next.config.mjs tsconfig.json package.json README.md --cache",
 		"format": "pnpm run format:base --write",
-		"format:check": "pnpm run format:base --check"
+		"format:check": "pnpm run format:base --check",
+    "check-types": "tsc --noEmit"
 	},
 	"dependencies": {
 		"next": "14.2.4",
