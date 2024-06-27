@@ -14,6 +14,7 @@
 		"check-types": "tsc --noEmit"
 	},
 	"dependencies": {
+		"@acab/reset.css": "^0.10.0",
 		"@kuma-ui/core": "^1.5.7",
 		"next": "14.2.4",
 		"react": "^18",

@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@acab/reset.css':
+        specifier: ^0.10.0
+        version: 0.10.0
       '@kuma-ui/core':
         specifier: ^1.5.7
         version: 1.5.7(@types/react@18.3.3)(next@14.2.4(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
@@ -59,6 +62,9 @@ importers:
         version: 5.5.2
 
 packages:
+
+  '@acab/reset.css@0.10.0':
+    resolution: {integrity: sha512-99vTN5JMd3X+DQhR7XNC5Vc92YxzQvPbT+jnNy5uuFTcBlo0RpMBaR6/U5ZXt/cEjkZ0LDHUu8XGCQOlAvuNIQ==}
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -2689,6 +2695,8 @@ packages:
     engines: {node: '>=12.20'}
 
 snapshots:
+
+  '@acab/reset.css@0.10.0': {}
 
   '@ampproject/remapping@2.3.0':
     dependencies:
