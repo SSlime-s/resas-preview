@@ -63,6 +63,7 @@ module.exports = {
 			"warn",
 			{ prefer: "type-imports" },
 		],
+		"func-style": ["error", "declaration"],
 	},
 	ignorePatterns: ["node_modules"],
 	settings: {
