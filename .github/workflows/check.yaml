@@ -1,0 +1,71 @@
+name: main
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: pnpm
+          node-version-file: .tool-versions
+      - run: pnpm install --frozen-lockfile
+
+  format:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: pnpm
+          node-version-file: .tool-versions
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: pnpm run format --check
+
+  lint:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: pnpm
+          node-version-file: .tool-versions
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: pnpm run lint
+
+  check-types:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: pnpm
+          node-version-file: .tool-versions
+      - uses: actions/cache@v4
+        with:
+          path: |
+            **/*.generated.ts
+            **/generated
+            **/dist
+          key: generated-${{ github.sha }}
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: |
+          echo '/// <reference types="next" />' > ./next-env.d.ts
+          echo '/// <reference types="next/image-types/global" />' >> ./next-env.d.ts
+      - run: pnpm run check-types
