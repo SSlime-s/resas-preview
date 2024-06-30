@@ -1,5 +1,6 @@
 import { getPopulation } from "@/model/apis/resas";
 
+import type { PopulationResponse } from "./types";
 import type { NextRequest } from "next/server";
 
 export async function GET(
@@ -19,13 +20,7 @@ export async function GET(
 
 	try {
 		const data = await getPopulation(prefCode);
-		const res = Object.fromEntries(
-			data.result.data.map((d) => [d.label, d.data] as const)
-		);
-
-		if (!Object.prototype.hasOwnProperty.call(res, "総人口")) {
-			return new Response("Internal Server Error", { status: 500 });
-		}
+		const res: PopulationResponse = data.result.data;
 
 		const headers = new Headers();
 		headers.append("Cache-Control", "public, max-age=604800");
