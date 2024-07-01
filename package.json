@@ -11,7 +11,8 @@
 		"format:base": "prettier src/ .eslintrc.cjs .prettierrc.mjs next.config.mjs tsconfig.json package.json README.md --cache",
 		"format": "pnpm run format:base --write",
 		"format:check": "pnpm run format:base --check",
-		"check-types": "tsc --noEmit"
+		"check-types": "tsc --noEmit",
+		"test": "vitest"
 	},
 	"dependencies": {
 		"@acab/reset.css": "^0.10.0",
@@ -34,8 +35,10 @@
 		"eslint-config-next": "14.2.4",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-import": "^2.29.1",
+		"jsdom": "^24.1.0",
 		"prettier": "^3.3.2",
-		"typescript": "^5.5.2"
+		"typescript": "^5.5.2",
+		"vitest": "^1.6.0"
 	},
 	"packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a",
 	"engines": {
