@@ -11,7 +11,9 @@ export function HomeInner({ prefectures }: Props) {
 			<h2>都道府県</h2>
 			<ul>
 				{prefectures.map((pref) => (
-					<li key={pref.prefCode}>{pref.prefName}</li>
+					<li key={pref.code} title={pref.name.katakana}>
+						{pref.name.kanji}
+					</li>
 				))}
 			</ul>
 		</section>
