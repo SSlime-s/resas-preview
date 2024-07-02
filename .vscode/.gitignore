@@ -1,0 +1,6 @@
+*
+!.gitignore
+!settings.json
+!launch.json
+!tasks.json
+!extensions.json

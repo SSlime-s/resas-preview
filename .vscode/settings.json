@@ -1,14 +1,17 @@
 {
-  "[javascript]": {
-    "editor.insertSpaces": false
-  },
-  "[javascriptreact]": {
-    "editor.insertSpaces": false
-  },
-  "[typescript]": {
-    "editor.insertSpaces": false
-  },
-  "[typescriptreact]": {
-    "editor.insertSpaces": false
-  }
+	"[javascript]": {
+		"editor.insertSpaces": false
+	},
+	"[javascriptreact]": {
+		"editor.insertSpaces": false
+	},
+	"[typescript]": {
+		"editor.insertSpaces": false
+	},
+	"[typescriptreact]": {
+		"editor.insertSpaces": false
+	},
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	}
 }
