@@ -11,7 +11,7 @@ export async function GET() {
 			code: pref.prefCode,
 			name: {
 				kanji: pref.prefName,
-				english: yomiMapping[pref.prefName]?.english,
+				english: yomiMapping[pref.prefName]?.english.toLowerCase(),
 				katakana: yomiMapping[pref.prefName]?.katakana,
 			},
 		}));

@@ -23,6 +23,7 @@ export async function GET(
 		const res: PopulationResponse = data.result.data;
 
 		const headers = new Headers();
+		// NOTE: 604800 seconds = 1 week
 		headers.append("Cache-Control", "public, max-age=604800");
 
 		return Response.json(res, {
