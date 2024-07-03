@@ -17,15 +17,17 @@ export function HomeInner({ prefectures }: Props) {
 	const [selected, setSelected] = useState<number[]>([]);
 
 	return (
-		<section>
-			<h2>都道府県</h2>
-			<FilterableCheckboxGroup
-				options={options}
-				selected={selected}
-				onSelectChange={setSelected}
-				onFilter={onFilter}
-			/>
+		<>
+			<section>
+				<h2>都道府県</h2>
+				<FilterableCheckboxGroup
+					options={options}
+					selected={selected}
+					onSelectChange={setSelected}
+					onFilter={onFilter}
+				/>
+			</section>
 			<PrefectureGraph prefectures={prefectures} targetCodes={selected} />
-		</section>
+		</>
 	);
 }

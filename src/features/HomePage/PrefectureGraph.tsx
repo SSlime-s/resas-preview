@@ -109,7 +109,7 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 	}
 
 	return (
-		<>
+		<section>
 			<h2>都道府県別人口推移</h2>
 			{keys.map((key) => (
 				<label key={key}>
@@ -151,6 +151,6 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 					/>
 				))}
 			</LineChart>
-		</>
+		</section>
 	);
 }
