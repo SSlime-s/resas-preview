@@ -1,5 +1,6 @@
 "use client";
 
+import { styled } from "@kuma-ui/core";
 import { useCallback, useMemo, useState, type Key } from "react";
 import React from "react";
 
@@ -50,7 +51,7 @@ export function FilterableCheckboxGroup<T extends Key>({
 	);
 
 	return (
-		<div>
+		<Wrap>
 			<FilterInput value={filter} onChange={onFilterChange} />
 
 			{filteredOptions.map(({ label, value }) => (
@@ -62,9 +63,14 @@ export function FilterableCheckboxGroup<T extends Key>({
 					onChange={onChange}
 				/>
 			))}
-		</div>
+		</Wrap>
 	);
 }
+
+const Wrap = styled.div`
+	display: grid;
+	grid-auto-flow: row;
+`;
 
 const CheckBoxWithOnChange = React.memo(
 	CheckBoxWithOnChangeRaw

@@ -1,6 +1,8 @@
+import { styled } from "@kuma-ui/core";
 import { Inter } from "next/font/google";
 
 import type { Metadata } from "next";
+
 import "@acab/reset.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,8 +18,21 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="ja">
-			<body className={inter.className}>{children}</body>
-		</html>
+		<Html lang="ja">
+			<Body className={inter.className}>{children}</Body>
+		</Html>
 	);
 }
+
+const Html = styled.html`
+	--background-primary: #f0f0f0;
+	--background-secondary: #ffffff;
+
+	--text-primary: #000000;
+
+	background: var(--background-primary);
+	height: 100%;
+`;
+const Body = styled.body`
+	height: 100%;
+`;

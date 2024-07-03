@@ -1,5 +1,6 @@
 "use client";
 
+import { styled } from "@kuma-ui/core";
 import { useMemo, useState } from "react";
 import {
 	CartesianGrid,
@@ -109,20 +110,22 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 	}
 
 	return (
-		<section>
+		<Wrap>
 			<h2>都道府県別人口推移</h2>
-			{keys.map((key) => (
-				<label key={key}>
-					<input
-						type="radio"
-						name="graphKey"
-						value={key}
-						onChange={(e) => setGraphKey(e.target.value)}
-						checked={graphKey === key}
-					/>
-					{key}
-				</label>
-			))}
+			<div>
+				{keys.map((key) => (
+					<label key={key}>
+						<input
+							type="radio"
+							name="graphKey"
+							value={key}
+							onChange={(e) => setGraphKey(e.target.value)}
+							checked={graphKey === key}
+						/>
+						{key}
+					</label>
+				))}
+			</div>
 			<LineChart
 				width={1000}
 				height={600}
@@ -151,6 +154,15 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 					/>
 				))}
 			</LineChart>
-		</section>
+		</Wrap>
 	);
 }
+
+const Wrap = styled.section`
+	display: grid;
+	grid-template-rows: max-content max-content 1fr;
+	height: 100%;
+	padding: 1rem;
+	background: var(--background-secondary);
+	border-radius: 0.5rem;
+`;

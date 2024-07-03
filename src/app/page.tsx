@@ -1,3 +1,5 @@
+import { styled } from "@kuma-ui/core";
+
 import { HomeInner } from "@/features/HomePage";
 
 import type { PrefecturesResponse } from "./api/prefs/types";
@@ -7,9 +9,12 @@ export default async function Home() {
 	const prefectures: PrefecturesResponse = await res.json();
 
 	return (
-		<main>
-			<h1>Title</h1>
+		<Main>
 			<HomeInner prefectures={prefectures} />
-		</main>
+		</Main>
 	);
 }
+
+const Main = styled.main`
+	height: 100%;
+`;

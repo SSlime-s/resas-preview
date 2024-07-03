@@ -1,5 +1,6 @@
 "use client";
 
+import { styled } from "@kuma-ui/core";
 import { useState } from "react";
 
 import { FilterableCheckboxGroup } from "@/components/FilterableCheckboxGroup";
@@ -17,17 +18,43 @@ export function HomeInner({ prefectures }: Props) {
 	const [selected, setSelected] = useState<number[]>([]);
 
 	return (
-		<>
-			<section>
-				<h2>都道府県</h2>
-				<FilterableCheckboxGroup
-					options={options}
-					selected={selected}
-					onSelectChange={setSelected}
-					onFilter={onFilter}
-				/>
-			</section>
-			<PrefectureGraph prefectures={prefectures} targetCodes={selected} />
-		</>
+		<Wrap>
+			<h1>Title</h1>
+			<Grid>
+				<Section>
+					<h2>都道府県</h2>
+					<FilterableCheckboxGroup
+						options={options}
+						selected={selected}
+						onSelectChange={setSelected}
+						onFilter={onFilter}
+					/>
+				</Section>
+				<PrefectureGraph prefectures={prefectures} targetCodes={selected} />
+			</Grid>
+		</Wrap>
 	);
 }
+
+const Wrap = styled.section`
+	display: grid;
+	grid-template-rows: max-content 1fr;
+	height: 100%;
+	padding: 1rem;
+`;
+
+const Grid = styled.div`
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	gap: 1rem;
+	padding: 1rem;
+	height: 100%;
+	overflow: hidden;
+`;
+
+const Section = styled.section`
+	background: var(--background-secondary);
+	padding: 1rem 1rem;
+	border-radius: 0.5rem;
+	overflow-y: auto;
+`;
