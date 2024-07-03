@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { FilterableCheckboxGroup } from "@/components/FilterableCheckboxGroup";
 
+import { PrefectureGraph } from "./PrefectureGraph";
 import { usePrefectureFilter } from "./usePrefecturesFilter";
 
 import type { PrefecturesResponse } from "@/app/api/prefs/types";
@@ -24,6 +25,7 @@ export function HomeInner({ prefectures }: Props) {
 				onSelectChange={setSelected}
 				onFilter={onFilter}
 			/>
+			<PrefectureGraph prefectures={prefectures} targetCodes={selected} />
 		</section>
 	);
 }
