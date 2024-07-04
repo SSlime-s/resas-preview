@@ -29,7 +29,8 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"vitest.config.mts"
+		"vitest.config.mts",
+		"kuma.config.ts"
 	],
 	"exclude": ["node_modules"]
 }
