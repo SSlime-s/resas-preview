@@ -14,6 +14,7 @@ import {
 } from "recharts";
 
 import { COLORS_HEX } from "@/app/utils/colors";
+import { formatCommaSeparate } from "@/app/utils/formatCommaSeparate";
 
 import { usePrefecturePopulation } from "./usePrefecturePopulation";
 
@@ -141,12 +142,11 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 					/>
 					<YAxis
 						label={{ value: graphKey, position: "insideTopLeft", offset: 0 }}
-						// NOTE: 三桁ごとにカンマ区切りにする
-						tickFormatter={(value: number) => value.toLocaleString("ja-JP")}
+						tickFormatter={formatCommaSeparate}
 						padding={{ top: 30 }}
 					/>
 					<Tooltip
-						formatter={(value: number) => `${value.toLocaleString("ja-JP")}人`}
+						formatter={(value: number) => `${formatCommaSeparate(value)}人`}
 						labelFormatter={(value: number) => `${value}年`}
 					/>
 					<Legend />
