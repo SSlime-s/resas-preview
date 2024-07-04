@@ -138,7 +138,6 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 					<XAxis
 						dataKey="year"
 						label={{ value: "年度", position: "insideBottomRight", offset: 0 }}
-						padding={{ left: 50, right: 50 }}
 					/>
 					<YAxis
 						label={{ value: graphKey, position: "insideTopLeft", offset: 0 }}
