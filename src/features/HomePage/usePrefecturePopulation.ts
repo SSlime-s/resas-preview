@@ -5,7 +5,6 @@ import type { PopulationResponse } from "@/app/api/prefs/[prefCode]/population/t
 
 interface Fetching {
 	type: "fetching";
-	controller: AbortController;
 }
 interface Data {
 	type: "data";
@@ -19,8 +18,66 @@ interface ErrorOccurred {
 type PopulationMapAtom = Record<number, Fetching | Data | ErrorOccurred>;
 
 const populationMapAtom = atom<PopulationMapAtom>({});
-export function usePrefecturePopulation(prefectures: Readonly<number[]>) {
+function usePopulationMap() {
 	const [populationMap, setPopulationMap] = useAtom(populationMapAtom);
+
+	const fetchStart = useCallback(
+		(prefCode: number) => {
+			setPopulationMap((prev) => ({
+				...prev,
+				[prefCode]: { type: "fetching" },
+			}));
+		},
+		[setPopulationMap]
+	);
+
+	const fetchSuccess = useCallback(
+		(prefCode: number, populationResponse: PopulationResponse) => {
+			setPopulationMap((prev) => ({
+				...prev,
+				[prefCode]: { type: "data", populationResponse },
+			}));
+		},
+		[setPopulationMap]
+	);
+
+	const fetchError = useCallback(
+		(prefCode: number, error: Error) => {
+			setPopulationMap((prev) => ({
+				...prev,
+				[prefCode]: { type: "error", error },
+			}));
+		},
+		[setPopulationMap]
+	);
+
+	const fetchCancelled = useCallback(
+		(prefCode: number) => {
+			setPopulationMap((prev) => {
+				const { [prefCode]: _, ...rest } = prev;
+				return rest;
+			});
+		},
+		[setPopulationMap]
+	);
+
+	return {
+		populationMap,
+		fetchStart,
+		fetchSuccess,
+		fetchError,
+		fetchCancelled,
+	};
+}
+
+export function usePrefecturePopulation(prefectures: Readonly<number[]>) {
+	const {
+		populationMap,
+		fetchStart,
+		fetchError,
+		fetchSuccess,
+		fetchCancelled,
+	} = usePopulationMap();
 
 	const fetchIfNotFetched = useCallback(
 		async (prefCode: number) => {
@@ -28,32 +85,17 @@ export function usePrefecturePopulation(prefectures: Readonly<number[]>) {
 				return;
 			}
 
-			const controller = new AbortController();
-			setPopulationMap((prev) => ({
-				...prev,
-				[prefCode]: { type: "fetching", controller },
-			}));
+			fetchStart(prefCode);
 
 			try {
-				const res = await fetch(`/api/prefs/${prefCode}/population`, {
-					signal: controller.signal,
-				});
+				const res = await fetch(`/api/prefs/${prefCode}/population`);
 				if (!res.ok) {
 					throw new Error(`Failed to fetch: ${res.status} ${res.statusText}`);
 				}
 				const json: PopulationResponse = await res.json();
-
-				setPopulationMap((prev) => ({
-					...prev,
-					[prefCode]: { type: "data", populationResponse: json },
-				}));
+				fetchSuccess(prefCode, json);
 			} catch (e) {
-				setPopulationMap((prev) => {
-					const newMap = { ...prev };
-					delete newMap[prefCode];
-					return newMap;
-				});
-
+				fetchCancelled(prefCode);
 				if (e instanceof DOMException && e.name === "AbortError") {
 					return;
 				}
@@ -61,13 +103,10 @@ export function usePrefecturePopulation(prefectures: Readonly<number[]>) {
 					console.error(e);
 					return;
 				}
-				setPopulationMap((prev) => ({
-					...prev,
-					[prefCode]: { type: "error", error: e },
-				}));
+				fetchError(prefCode, e);
 			}
 		},
-		[populationMap, setPopulationMap]
+		[fetchCancelled, fetchError, fetchStart, fetchSuccess, populationMap]
 	);
 
 	const isLoading = useMemo(() => {
