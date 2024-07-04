@@ -99,68 +99,73 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 		return <p>Error: {error.message}</p>;
 	}
 
-	if (isLoading) {
-		return <p>Loading...</p>;
-	}
-
 	if (formattedData === null) {
 		return null;
-	}
-
-	if (isEmpty) {
-		return <p>No data. Please select at least one prefecture</p>;
 	}
 
 	return (
 		<Wrap>
 			<h2>都道府県別人口推移</h2>
-			<div>
-				{keys.map((key) => (
-					<label key={key}>
-						<input
-							type="radio"
-							name="graphKey"
-							value={key}
-							onChange={(e) => setGraphKey(e.target.value)}
-							checked={graphKey === key}
-						/>
-						{key}
-					</label>
-				))}
-			</div>
-			<ResponsiveContainer width="100%" height="100%">
-				<LineChart
-					width={1000}
-					height={600}
-					data={formattedData[graphKey]}
-					margin={{ top: 5, right: 20, bottom: 5, left: 50 }}
-				>
-					<CartesianGrid strokeDasharray="3 3" />
-					<XAxis
-						dataKey="year"
-						label={{ value: "年度", position: "insideBottomRight", offset: 0 }}
-					/>
-					<YAxis
-						label={{ value: graphKey, position: "insideTopLeft", offset: 0 }}
-						tickFormatter={formatCommaSeparate}
-						padding={{ top: 30 }}
-					/>
-					<Tooltip
-						formatter={(value: number) => `${formatCommaSeparate(value)}人`}
-						labelFormatter={(value: number) => `${value}年`}
-					/>
-					<Legend />
-					{targetCodes.map((code, index) => (
-						<Line
-							key={code}
-							type="monotone"
-							dataKey={prefectureMap[code]?.name.kanji}
-							stroke={COLORS_HEX[index]}
-							animationDuration={200}
-						/>
-					))}
-				</LineChart>
-			</ResponsiveContainer>
+			{isLoading && <p>Loading...</p>}
+			{!isEmpty && (
+				<>
+					<div>
+						{keys.map((key) => (
+							<label key={key}>
+								<input
+									type="radio"
+									name="graphKey"
+									value={key}
+									onChange={(e) => setGraphKey(e.target.value)}
+									checked={graphKey === key}
+								/>
+								{key}
+							</label>
+						))}
+					</div>
+					<ResponsiveContainer width="100%" height="100%">
+						<LineChart
+							width={1000}
+							height={600}
+							data={formattedData[graphKey]}
+							margin={{ top: 5, right: 20, bottom: 5, left: 50 }}
+						>
+							<CartesianGrid strokeDasharray="3 3" />
+							<XAxis
+								dataKey="year"
+								label={{
+									value: "年度",
+									position: "insideBottomRight",
+									offset: 0,
+								}}
+							/>
+							<YAxis
+								label={{
+									value: graphKey,
+									position: "insideTopLeft",
+									offset: 0,
+								}}
+								tickFormatter={formatCommaSeparate}
+								padding={{ top: 30 }}
+							/>
+							<Tooltip
+								formatter={(value: number) => `${formatCommaSeparate(value)}人`}
+								labelFormatter={(value: number) => `${value}年`}
+							/>
+							<Legend />
+							{targetCodes.map((code, index) => (
+								<Line
+									key={code}
+									type="monotone"
+									dataKey={prefectureMap[code]?.name.kanji}
+									stroke={COLORS_HEX[index]}
+									animationDuration={200}
+								/>
+							))}
+						</LineChart>
+					</ResponsiveContainer>
+				</>
+			)}
 		</Wrap>
 	);
 }

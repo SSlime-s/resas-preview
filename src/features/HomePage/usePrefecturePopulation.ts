@@ -127,12 +127,14 @@ export function usePrefecturePopulation(prefectures: Readonly<number[]>) {
 		const data: Record<number, PopulationResponse> = {};
 		for (const prefCode of prefectures) {
 			const v = populationMap[prefCode];
-			if (v === undefined || v.type === "fetching" || v.type === "error") {
-				return null;
+			// NOTE: データ取得中やエラーでも昔のデータを表示できるように return しない
+			if (v?.type !== "data") {
+				continue;
 			}
 
 			data[prefCode] = v.populationResponse;
 		}
+
 		return data;
 	}, [populationMap, prefectures]);
 
