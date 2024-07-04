@@ -145,7 +145,10 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 						tickFormatter={(value: number) => value.toLocaleString("ja-JP")}
 						padding={{ top: 30 }}
 					/>
-					<Tooltip />
+					<Tooltip
+						formatter={(value: number) => `${value.toLocaleString("ja-JP")}人`}
+						labelFormatter={(value: number) => `${value}年`}
+					/>
 					<Legend />
 					{targetCodes.map((code, index) => (
 						<Line
