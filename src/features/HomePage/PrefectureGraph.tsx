@@ -7,6 +7,7 @@ import {
 	Legend,
 	Line,
 	LineChart,
+	ResponsiveContainer,
 	Tooltip,
 	XAxis,
 	YAxis,
@@ -126,34 +127,36 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 					</label>
 				))}
 			</div>
-			<LineChart
-				width={1000}
-				height={600}
-				data={formattedData[graphKey]}
-				margin={{ top: 5, right: 20, bottom: 5, left: 50 }}
-			>
-				<CartesianGrid strokeDasharray="3 3" />
-				<XAxis
-					dataKey="year"
-					label={{ value: "年度", position: "insideBottomRight", offset: 0 }}
-					padding={{ left: 50, right: 50 }}
-				/>
-				<YAxis
-					label={{ value: graphKey, position: "insideTopLeft", offset: 0 }}
-					padding={{ top: 50 }}
-				/>
-				<Tooltip />
-				<Legend />
-				{targetCodes.map((code, index) => (
-					<Line
-						key={code}
-						type="monotone"
-						dataKey={prefectureMap[code]?.name.kanji}
-						stroke={COLORS_HEX[index]}
-						animationDuration={200}
+			<ResponsiveContainer width="100%" height="100%">
+				<LineChart
+					width={1000}
+					height={600}
+					data={formattedData[graphKey]}
+					margin={{ top: 5, right: 20, bottom: 5, left: 50 }}
+				>
+					<CartesianGrid strokeDasharray="3 3" />
+					<XAxis
+						dataKey="year"
+						label={{ value: "年度", position: "insideBottomRight", offset: 0 }}
+						padding={{ left: 50, right: 50 }}
 					/>
-				))}
-			</LineChart>
+					<YAxis
+						label={{ value: graphKey, position: "insideTopLeft", offset: 0 }}
+						padding={{ top: 50 }}
+					/>
+					<Tooltip />
+					<Legend />
+					{targetCodes.map((code, index) => (
+						<Line
+							key={code}
+							type="monotone"
+							dataKey={prefectureMap[code]?.name.kanji}
+							stroke={COLORS_HEX[index]}
+							animationDuration={200}
+						/>
+					))}
+				</LineChart>
+			</ResponsiveContainer>
 		</Wrap>
 	);
 }
