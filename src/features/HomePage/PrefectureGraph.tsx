@@ -143,7 +143,7 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 						label={{ value: graphKey, position: "insideTopLeft", offset: 0 }}
 						// NOTE: 三桁ごとにカンマ区切りにする
 						tickFormatter={(value: number) => value.toLocaleString("ja-JP")}
-						padding={{ top: 50 }}
+						padding={{ top: 30 }}
 					/>
 					<Tooltip />
 					<Legend />

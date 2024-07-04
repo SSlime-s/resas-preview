@@ -45,11 +45,16 @@ const Wrap = styled.section`
 
 const Grid = styled.div`
 	display: grid;
-	grid-template-columns: max-content 1fr;
 	gap: 1rem;
 	padding: 1rem;
 	height: 100%;
 	overflow: hidden;
+
+	grid-template-rows: 1fr 2fr;
+	@media (min-width: t("breakpoints.screen2")) {
+		grid-template-columns: max-content 1fr;
+		grid-template-rows: auto;
+	}
 `;
 
 const Section = styled.section`
