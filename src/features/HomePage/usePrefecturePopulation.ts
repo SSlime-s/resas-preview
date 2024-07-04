@@ -1,5 +1,5 @@
 import { atom, useAtom } from "jotai";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 
 import type { PopulationResponse } from "@/app/api/prefs/[prefCode]/population/types";
 
@@ -11,14 +11,15 @@ interface Data {
 	type: "data";
 	populationResponse: PopulationResponse;
 }
-
-interface PopulationMapAtom {
-	[key: number]: Fetching | Data;
+interface ErrorOccurred {
+	type: "error";
+	error: Error;
 }
+
+type PopulationMapAtom = Record<number, Fetching | Data | ErrorOccurred>;
 
 const populationMapAtom = atom<PopulationMapAtom>({});
 export function usePrefecturePopulation(prefectures: Readonly<number[]>) {
-	const [error, setError] = useState<Error | null>(null);
 	const [populationMap, setPopulationMap] = useAtom(populationMapAtom);
 
 	const fetchIfNotFetched = useCallback(
@@ -60,7 +61,10 @@ export function usePrefecturePopulation(prefectures: Readonly<number[]>) {
 					console.error(e);
 					return;
 				}
-				setError(e);
+				setPopulationMap((prev) => ({
+					...prev,
+					[prefCode]: { type: "error", error: e },
+				}));
 			}
 		},
 		[populationMap, setPopulationMap]
@@ -68,6 +72,10 @@ export function usePrefecturePopulation(prefectures: Readonly<number[]>) {
 
 	const isLoading = useMemo(() => {
 		return Object.values(populationMap).some((v) => v.type === "fetching");
+	}, [populationMap]);
+	const error = useMemo(() => {
+		const error = Object.values(populationMap).find((v) => v.type === "error");
+		return error?.error ?? null;
 	}, [populationMap]);
 
 	useEffect(() => {
@@ -80,7 +88,7 @@ export function usePrefecturePopulation(prefectures: Readonly<number[]>) {
 		const data: Record<number, PopulationResponse> = {};
 		for (const prefCode of prefectures) {
 			const v = populationMap[prefCode];
-			if (v === undefined || v.type === "fetching") {
+			if (v === undefined || v.type === "fetching" || v.type === "error") {
 				return null;
 			}
 
