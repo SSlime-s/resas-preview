@@ -106,7 +106,6 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 	return (
 		<Wrap>
 			<h2>都道府県別人口推移</h2>
-			{isLoading && <p>Loading...</p>}
 			{!isEmpty && (
 				<>
 					<div>
@@ -166,15 +165,23 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 					</ResponsiveContainer>
 				</>
 			)}
+			{isLoading && <Loading>Loading...</Loading>}
 		</Wrap>
 	);
 }
 
 const Wrap = styled.section`
 	display: grid;
+	position: relative;
 	grid-template-rows: max-content max-content 1fr;
 	height: 100%;
 	padding: 1rem;
 	background: var(--background-secondary);
 	border-radius: 0.5rem;
+`;
+
+const Loading = styled.div`
+	position: absolute;
+	inset: 0;
+	background: rgba(255, 255, 255, 0.5);
 `;
