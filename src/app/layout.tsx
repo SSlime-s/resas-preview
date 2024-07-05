@@ -29,6 +29,7 @@ const Html = styled.html`
 	--background-secondary: #ffffff;
 
 	--text-primary: #000000;
+	--text-secondary: #666666;
 
 	background: var(--background-primary);
 	height: 100%;

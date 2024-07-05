@@ -118,7 +118,12 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 	return (
 		<Wrap>
 			<h2>都道府県別人口推移</h2>
-			{!isEmpty && (
+			{isEmpty ? (
+				<EmptyMessage>
+					<p>都道府県が選択されていません。</p>
+					<p>1つ以上の都道府県を選択してください。</p>
+				</EmptyMessage>
+			) : (
 				<>
 					<Tabs
 						idPrefix={tablistId}
@@ -192,6 +197,14 @@ const Wrap = styled.section`
 	padding: 1rem;
 	background: var(--background-secondary);
 	border-radius: 0.5rem;
+`;
+
+const EmptyMessage = styled.div`
+	grid-row: 3;
+	place-self: center;
+	text-align: center;
+	font-size: 1.25rem;
+	color: var(--text-secondary);
 `;
 
 const Loading = styled.div`
