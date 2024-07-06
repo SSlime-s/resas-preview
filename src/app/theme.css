@@ -1,0 +1,19 @@
+:root {
+	--background: #f0f0f0;
+	--background-sub: #ffffff;
+	--background-muted: #f8f8f8;
+
+	--foreground: #000000;
+	--foreground-sub: #666666;
+	--foreground-muted: #999999;
+
+	--loading: #f0f0f080;
+
+	--radius: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		/* TODO */
+	}
+}

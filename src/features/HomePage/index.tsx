@@ -58,8 +58,10 @@ const Grid = styled.div`
 `;
 
 const Section = styled.section`
-	background: var(--background-secondary);
 	padding: 1rem 1rem;
-	border-radius: 0.5rem;
 	overflow-y: auto;
+
+	background: var(--background-sub);
+	color: var(--foreground);
+	border-radius: var(--radius);
 `;

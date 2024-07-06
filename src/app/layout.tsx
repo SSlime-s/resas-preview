@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 
 import "@acab/reset.css";
+import "@/app/theme.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,15 +26,10 @@ export default function RootLayout({
 }
 
 const Html = styled.html`
-	--background-primary: #f0f0f0;
-	--background-secondary: #ffffff;
-
-	--text-primary: #000000;
-	--text-secondary: #666666;
-
-	background: var(--background-primary);
+	background: var(--background);
 	height: 100%;
 `;
+
 const Body = styled.body`
 	height: 100%;
 `;

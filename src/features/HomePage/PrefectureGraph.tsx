@@ -195,8 +195,10 @@ const Wrap = styled.section`
 	grid-template-rows: max-content max-content 1fr;
 	height: 100%;
 	padding: 1rem;
-	background: var(--background-secondary);
-	border-radius: 0.5rem;
+
+	background: var(--background-sub);
+	color: hsl(var(--card-foreground));
+	border-radius: var(--radius);
 `;
 
 const EmptyMessage = styled.div`
@@ -204,11 +206,11 @@ const EmptyMessage = styled.div`
 	place-self: center;
 	text-align: center;
 	font-size: 1.25rem;
-	color: var(--text-secondary);
+	color: var(--foreground-sub);
 `;
 
 const Loading = styled.div`
 	position: absolute;
 	inset: 0;
-	background: rgba(255, 255, 255, 0.5);
+	background: var(--loading);
 `;
