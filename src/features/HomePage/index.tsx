@@ -60,7 +60,10 @@ const Grid = styled.div`
 
 const Section = styled.section`
 	padding: 1rem 1rem;
-	overflow-y: auto;
+	overflow: hidden;
+	display: grid;
+	grid-template-rows: max-content 1fr;
+	gap: 0.5rem;
 
 	background: var(--background-sub);
 	color: var(--foreground);

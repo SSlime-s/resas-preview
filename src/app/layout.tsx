@@ -28,6 +28,22 @@ export default function RootLayout({
 const Html = styled.html`
 	background: var(--background);
 	height: 100%;
+
+	h1 {
+		font-size: 1.2rem;
+
+		@media (min-width: t("breakpoints.screen2")) {
+			font-size: 1.5rem;
+		}
+	}
+
+	h2 {
+		font-size: 1.1rem;
+
+		@media (min-width: t("breakpoints.screen2")) {
+			font-size: 1.25rem;
+		}
+	}
 `;
 
 const Body = styled.body`

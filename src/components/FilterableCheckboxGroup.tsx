@@ -54,22 +54,33 @@ export function FilterableCheckboxGroup<T extends Key>({
 		<Wrap>
 			<FilterInput value={filter} onChange={onFilterChange} />
 
-			{filteredOptions.map(({ label, value }) => (
-				<CheckBoxWithOnChange
-					key={value}
-					label={label}
-					value={value}
-					checked={selected.includes(value)}
-					onChange={onChange}
-				/>
-			))}
+			<Scrollable>
+				{filteredOptions.map(({ label, value }) => (
+					<CheckBoxWithOnChange
+						key={value}
+						label={label}
+						value={value}
+						checked={selected.includes(value)}
+						onChange={onChange}
+					/>
+				))}
+			</Scrollable>
 		</Wrap>
 	);
 }
 
 const Wrap = styled.div`
 	display: grid;
+	grid-template-rows: max-content 1fr;
+	overflow: hidden;
+	height: 100%;
+	gap: 0.5rem;
+`;
+
+const Scrollable = styled.div`
+	display: grid;
 	grid-auto-flow: row;
+	overflow-y: auto;
 `;
 
 const CheckBoxWithOnChange = React.memo(
