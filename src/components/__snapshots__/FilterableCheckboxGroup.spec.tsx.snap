@@ -1,0 +1,37 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Components/FilterableCheckboxGroup > スナップショット 1`] = `
+<div>
+  <div
+    class="🐻-1825998508"
+  >
+    <input
+      type="search"
+      value=""
+    />
+    <div
+      class="🐻-2655331464"
+    >
+      <label>
+        <input
+          checked=""
+          type="checkbox"
+        />
+        Foo
+      </label>
+      <label>
+        <input
+          type="checkbox"
+        />
+        Bar
+      </label>
+      <label>
+        <input
+          type="checkbox"
+        />
+        Baz
+      </label>
+    </div>
+  </div>
+</div>
+`;
