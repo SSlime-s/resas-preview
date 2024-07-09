@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Components/Tabs > スナップショット 1`] = `
+<div>
+  <div
+    class="🐻-1295175268"
+    role="tablist"
+  >
+    <button
+      aria-controls="tabpanel-foo"
+      aria-selected="true"
+      class="🐻-2535078966"
+      id="tablist-foo"
+      role="tab"
+      tabindex="0"
+    >
+      Foo
+    </button>
+    <button
+      aria-controls="tabpanel-bar"
+      aria-selected="false"
+      class="🐻-2535078966"
+      id="tablist-bar"
+      role="tab"
+      tabindex="-1"
+    >
+      Bar
+    </button>
+  </div>
+</div>
+`;
