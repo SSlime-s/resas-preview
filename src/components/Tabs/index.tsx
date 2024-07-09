@@ -1,3 +1,4 @@
+import { styled } from "@kuma-ui/core";
 import React, { useCallback, useRef } from "react";
 
 export interface Option<T> {
@@ -68,9 +69,9 @@ function TabsRaw<T extends string | number>({
 	);
 
 	return (
-		<div role="tablist">
+		<TabList role="tablist">
 			{options.map((option) => (
-				<button
+				<Tab
 					key={option.value}
 					id={`${idPrefix}-${option.value}`}
 					role="tab"
@@ -82,9 +83,43 @@ function TabsRaw<T extends string | number>({
 					ref={refCallback(option.value)}
 				>
 					{option.label}
-				</button>
+				</Tab>
 			))}
-		</div>
+		</TabList>
 	);
 }
 export const Tabs = React.memo(TabsRaw) as typeof TabsRaw;
+
+const TabList = styled.div`
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: max-content;
+	gap: 4px;
+	padding: 2px;
+	width: fit-content;
+	max-width: 100%;
+	background: var(--background-muted);
+	border-radius: var(--radius);
+	overflow-x: auto;
+	margin: 8px 0;
+`;
+
+const Tab = styled.button`
+	padding: 4px 8px;
+	border-radius: var(--radius);
+	cursor: pointer;
+	transition: background color 0.1s;
+	background: var(--background-muted);
+	color: var(--foreground-muted);
+
+	font-size: 0.75rem;
+	@media (min-width: t("breakpoints.screen2")) {
+		font-size: 0.875rem;
+		padding: 8px 16px;
+	}
+
+	&[aria-selected="true"] {
+		background: var(--background-sub);
+		color: var(--foreground);
+	}
+`;
