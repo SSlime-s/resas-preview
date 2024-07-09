@@ -46,12 +46,13 @@ const Wrap = styled.section`
 const Grid = styled.div`
 	display: grid;
 	gap: 1rem;
-	padding: 1rem;
+	padding: 1rem 0.5rem;
 	height: 100%;
 	overflow: hidden;
 
 	grid-template-rows: 1fr 2fr;
 	@media (min-width: t("breakpoints.screen2")) {
+		padding: 1rem;
 		grid-template-columns: max-content 1fr;
 		grid-template-rows: auto;
 	}

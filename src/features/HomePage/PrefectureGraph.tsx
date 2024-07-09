@@ -195,6 +195,7 @@ const Wrap = styled.section`
 	grid-template-rows: max-content max-content 1fr;
 	height: 100%;
 	padding: 1rem;
+	overflow: hidden;
 
 	background: var(--background-sub);
 	color: hsl(var(--card-foreground));
