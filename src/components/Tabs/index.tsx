@@ -113,8 +113,10 @@ const Tab = styled.button`
 	color: var(--foreground-muted);
 
 	font-size: 0.75rem;
+	line-height: 1.25;
 	@media (min-width: t("breakpoints.screen2")) {
 		font-size: 0.875rem;
+		line-height: 1.5;
 		padding: 8px 16px;
 	}
 
