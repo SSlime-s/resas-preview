@@ -18,6 +18,7 @@ import { formatCommaSeparate } from "@/app/utils/formatCommaSeparate";
 import { Tabs } from "@/components/Tabs";
 import { useCssVariable } from "@/hooks/useCssVariable";
 
+import { formatDataForGraph } from "./formatDataForGraph";
 import { usePrefecturePopulation } from "./usePrefecturePopulation";
 
 import type { PrefecturesResponse } from "@/app/api/prefs/types";
@@ -41,52 +42,7 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 			return null;
 		}
 
-		const keysSet = Object.values(data).reduce((acc, cur) => {
-			cur.map((d) => d.label).forEach((label) => acc.add(label));
-			return acc;
-		}, new Set<string>());
-
-		if (
-			Object.values(data).some((res) => res.some((d) => !keysSet.has(d.label)))
-		) {
-			throw new Error("Data inconsistency");
-		}
-
-		const keys = Array.from(keysSet);
-
-		// NOTE: like { year: "2024", "東京都": 1000, "大阪府": 2000, ... }
-		type Datum = { year: number } & Record<string, number>;
-
-		const result: { [key: string]: Datum[] } = {};
-
-		for (const key of keys) {
-			const dataByYear = new Map<number, { [key: string]: number }>();
-			for (const [prefCode, res] of Object.entries(data)) {
-				const prefLabel = prefectureMap[Number(prefCode)]?.name.kanji;
-				if (prefLabel === undefined) {
-					throw new Error("Invalid prefCode");
-				}
-
-				const datum = res.find((d) => d.label === key);
-				if (datum === undefined) {
-					throw new Error("Data inconsistency");
-				}
-
-				for (const { year, value } of datum.data) {
-					const yearData = dataByYear.get(year) ?? {};
-					yearData[prefLabel] = value;
-					dataByYear.set(year, yearData);
-				}
-			}
-
-			const sortedData = Array.from(dataByYear.entries())
-				.sort(([a], [b]) => a - b)
-				.map(([year, data]): Datum => ({ year, ...data }));
-
-			result[key] = sortedData;
-		}
-
-		return result;
+		return formatDataForGraph(data, prefectureMap);
 	}, [data, prefectureMap]);
 
 	const keys = useMemo(() => {
