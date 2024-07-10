@@ -41,7 +41,6 @@ function fuzzyPrefectureMatch(
 	prefecture: Readonly<Prefecture>,
 	query: string
 ): boolean {
-	console.log(prefecture.name, query);
 	return (
 		prefecture.name.kanji.includes(query) ||
 		(prefecture.name.katakana?.includes(normalizeToKatakana(query)) ?? false) ||
