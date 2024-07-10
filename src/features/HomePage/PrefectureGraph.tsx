@@ -2,6 +2,7 @@
 
 import { styled } from "@kuma-ui/core";
 import { useId, useMemo, useState } from "react";
+import { VscLoading } from "react-icons/vsc";
 import {
 	CartesianGrid,
 	Legend,
@@ -152,7 +153,13 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 					</div>
 				</>
 			)}
-			{isLoading && <Loading>Loading...</Loading>}
+			{isLoading && (
+				<Loading>
+					<Spinner>
+						<VscLoading size={64} title="読込中" />
+					</Spinner>
+				</Loading>
+			)}
 		</Wrap>
 	);
 }
@@ -185,5 +192,22 @@ const EmptyMessage = styled.div`
 const Loading = styled.div`
 	position: absolute;
 	inset: 0;
+	display: grid;
+	place-items: center;
 	background: var(--loading);
+`;
+
+const Spinner = styled.div`
+	@keyframes spinner {
+		0% {
+			transform: rotate(60deg);
+		}
+
+		100% {
+			transform: rotate(420deg);
+		}
+	}
+
+	animation: spinner 800ms linear infinite;
+	color: var(--foreground-sub);
 `;
