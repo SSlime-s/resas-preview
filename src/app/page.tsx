@@ -2,11 +2,10 @@ import { styled } from "@kuma-ui/core";
 
 import { HomeInner } from "@/features/HomePage";
 
-import type { PrefecturesResponse } from "./api/prefs/types";
+import { getDirect } from "./api/prefs/route";
 
 export default async function Home() {
-	const res = await fetch(new URL("/api/prefs", process.env.BASE_URL));
-	const prefectures: PrefecturesResponse = await res.json();
+	const prefectures = await getDirect();
 
 	return (
 		<Main>

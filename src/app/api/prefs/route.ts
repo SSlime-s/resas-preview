@@ -5,30 +5,35 @@ import type { PrefecturesResponse } from "./types";
 
 export async function GET() {
 	try {
-		const data = await getAllPref();
-		const prefYomiMap = getPrefYomiMap();
-		const res: PrefecturesResponse = data.result.map((pref) => ({
-			code: pref.prefCode,
-			name: {
-				kanji: pref.prefName,
-				english: prefYomiMap.get(pref.prefName)?.english.toLowerCase(),
-				katakana: prefYomiMap.get(pref.prefName)?.katakana,
-			},
-		}));
-
-		if (process.env.NODE_ENV === "development") {
-			const consistencyError = checkConsistency(res);
-			if (consistencyError !== null) {
-				console.error(consistencyError);
-				return new Response(consistencyError, { status: 500 });
-			}
-		}
+		const res = await getDirect();
 
 		return Response.json(res);
 	} catch (e) {
 		console.error(e);
 		return new Response("Internal Server Error", { status: 500 });
 	}
+}
+
+export async function getDirect() {
+	const data = await getAllPref();
+	const prefYomiMap = getPrefYomiMap();
+	const res: PrefecturesResponse = data.result.map((pref) => ({
+		code: pref.prefCode,
+		name: {
+			kanji: pref.prefName,
+			english: prefYomiMap.get(pref.prefName)?.english.toLowerCase(),
+			katakana: prefYomiMap.get(pref.prefName)?.katakana,
+		},
+	}));
+
+	if (process.env.NODE_ENV === "development") {
+		const consistencyError = checkConsistency(res);
+		if (consistencyError !== null) {
+			throw new Error(consistencyError);
+		}
+	}
+
+	return res;
 }
 
 /**
