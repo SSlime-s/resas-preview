@@ -143,7 +143,7 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 								width={1000}
 								height={600}
 								data={formattedData[graphKey]}
-								margin={{ top: 5, right: 20, bottom: 5, left: 50 }}
+								margin={{ top: 20, right: 20, bottom: 5, left: 50 }}
 							>
 								<CartesianGrid strokeDasharray="3 3" />
 								<XAxis
@@ -151,14 +151,14 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 									label={{
 										value: "年度",
 										position: "insideBottomRight",
-										offset: 0,
+										offset: -12,
 									}}
 								/>
 								<YAxis
 									label={{
 										value: graphKey,
 										position: "insideTopLeft",
-										offset: 0,
+										offset: -16,
 									}}
 									tickFormatter={formatCommaSeparate}
 									padding={{ top: 30 }}
