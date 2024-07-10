@@ -20,7 +20,10 @@ export async function GET(
 
 	try {
 		const data = await getPopulation(prefCode);
-		const res: PopulationResponse = data.result.data;
+		const res: PopulationResponse = data.result.data.map((d) => ({
+			...d,
+			data: d.data.filter((d) => d.year <= data.result.boundaryYear),
+		}));
 
 		const headers = new Headers();
 		// NOTE: 604800 seconds = 1 week
