@@ -15,6 +15,14 @@
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		/* TODO */
+		--background: #1a1a1a;
+		--background-sub: #333333;
+		--background-muted: #2d2d2d;
+
+		--foreground: #ffffff;
+		--foreground-sub: #cccccc;
+		--foreground-muted: #999999;
+
+		--loading: #1a1a1a80;
 	}
 }
