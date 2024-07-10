@@ -5,8 +5,8 @@ interface Yomi {
 	katakana: string;
 	english: string;
 }
-export function getPrefYomi(): Record<string, Yomi> {
-	return Object.fromEntries(
+export function getPrefYomiMap(): Map<string, Yomi> {
+	return new Map(
 		Object.entries(jisx).map(([_, { en, ja, "ja-kana": jaKana }]) => [
 			ja,
 			{ katakana: jaKana, english: en },

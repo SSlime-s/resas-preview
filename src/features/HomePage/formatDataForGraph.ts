@@ -6,7 +6,7 @@ export type Row = { year: number } & Record<string, number>;
 
 export function formatDataForGraph(
 	data: Readonly<Record<number, PopulationResponse>>,
-	prefectureMap: Readonly<Record<string, Prefecture>>
+	prefectureMap: Readonly<Map<number, Prefecture>>
 ): Record<string, Row[]> {
 	const keys = extractByKey(data, "label");
 
@@ -15,7 +15,7 @@ export function formatDataForGraph(
 	for (const key of keys) {
 		const dataByYear = new Map<number, { [key: string]: number }>();
 		for (const [prefCode, res] of Object.entries(data)) {
-			const prefLabel = prefectureMap[Number(prefCode)]?.name.kanji;
+			const prefLabel = prefectureMap.get(Number(prefCode))?.name.kanji;
 			if (prefLabel === undefined) {
 				throw new Error("Invalid prefCode");
 			}

@@ -1,4 +1,4 @@
-import { getPrefYomi } from "@/model/apis/prefYomi";
+import { getPrefYomiMap } from "@/model/apis/prefYomi";
 import { getAllPref } from "@/model/apis/resas";
 
 import type { PrefecturesResponse } from "./types";
@@ -6,13 +6,13 @@ import type { PrefecturesResponse } from "./types";
 export async function GET() {
 	try {
 		const data = await getAllPref();
-		const yomiMapping = getPrefYomi();
+		const prefYomiMap = getPrefYomiMap();
 		const res: PrefecturesResponse = data.result.map((pref) => ({
 			code: pref.prefCode,
 			name: {
 				kanji: pref.prefName,
-				english: yomiMapping[pref.prefName]?.english.toLowerCase(),
-				katakana: yomiMapping[pref.prefName]?.katakana,
+				english: prefYomiMap.get(pref.prefName)?.english.toLowerCase(),
+				katakana: prefYomiMap.get(pref.prefName)?.katakana,
 			},
 		}));
 

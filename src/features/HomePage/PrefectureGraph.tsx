@@ -32,7 +32,7 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 	const cssVariable = useCssVariable(["--foreground", "--background-sub"]);
 
 	const prefectureMap = useMemo(() => {
-		return Object.fromEntries(prefectures.map((pref) => [pref.code, pref]));
+		return new Map(prefectures.map((pref) => [pref.code, pref]));
 	}, [prefectures]);
 
 	const { data, error, isLoading } = usePrefecturePopulation(targetCodes);
@@ -142,7 +142,7 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 									<Line
 										key={code}
 										type="monotone"
-										dataKey={prefectureMap[code]?.name.kanji}
+										dataKey={prefectureMap.get(code)?.name.kanji}
 										stroke={COLORS_HEX[index]}
 										animationDuration={200}
 									/>

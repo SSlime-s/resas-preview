@@ -11,8 +11,8 @@ export function usePrefectureFilter(prefectures: Readonly<Prefecture[]>) {
 			value: pref.code,
 		}));
 	}, [prefectures]);
-	const valuePrefectureMap = useMemo(() => {
-		return Object.fromEntries(prefectures.map((pref) => [pref.code, pref]));
+	const prefectureMap = useMemo(() => {
+		return new Map(prefectures.map((pref) => [pref.code, pref]));
 	}, [prefectures]);
 
 	type Option = (typeof options)[number];
@@ -24,14 +24,14 @@ export function usePrefectureFilter(prefectures: Readonly<Prefecture[]>) {
 			}
 
 			return options.filter((option) => {
-				const prefecture = valuePrefectureMap[option.value];
+				const prefecture = prefectureMap.get(option.value);
 				if (prefecture === undefined) {
 					return false;
 				}
 				return fuzzyPrefectureMatch(prefecture, value);
 			});
 		},
-		[valuePrefectureMap]
+		[prefectureMap]
 	);
 
 	return { options, onFilter };
