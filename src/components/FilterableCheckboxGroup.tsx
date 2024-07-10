@@ -21,6 +21,7 @@ interface Props<T extends Key> {
 	): Readonly<Option<T>[]>;
 
 	placeholder?: string;
+	emptyText?: string | React.ReactNode;
 }
 export function FilterableCheckboxGroup<T extends Key>({
 	options,
@@ -28,6 +29,7 @@ export function FilterableCheckboxGroup<T extends Key>({
 	onSelectChange,
 	onFilter,
 	placeholder,
+	emptyText,
 }: Props<T>) {
 	const [filter, setFilter] = useState("");
 	const filteredOptions = useMemo(
@@ -71,6 +73,9 @@ export function FilterableCheckboxGroup<T extends Key>({
 						onChange={onChange}
 					/>
 				))}
+				{filteredOptions.length === 0 && (
+					<Empty>{emptyText ?? "No items"}</Empty>
+				)}
 			</Scrollable>
 		</Wrap>
 	);
@@ -92,6 +97,12 @@ const Scrollable = styled.div`
 	gap: 0.125rem;
 
 	padding: 4px;
+`;
+
+const Empty = styled.div`
+	place-self: center;
+	text-align: center;
+	color: var(--foreground-muted);
 `;
 
 const CheckBoxWithOnChange = React.memo(

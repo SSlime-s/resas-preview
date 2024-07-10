@@ -29,6 +29,7 @@ export function HomeInner({ prefectures }: Props) {
 						onSelectChange={setSelected}
 						onFilter={onFilter}
 						placeholder="都道府県を検索"
+						emptyText="都道府県が見つかりませんでした"
 					/>
 				</Section>
 				<PrefectureGraph prefectures={prefectures} targetCodes={selected} />

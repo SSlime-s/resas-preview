@@ -29,4 +29,17 @@ describe("Components/FilterableCheckboxGroup", () => {
 
 		expect(container).toMatchSnapshot();
 	});
+
+	it("スナップショット: no item", () => {
+		const { container } = render(
+			<FilterableCheckboxGroup
+				options={[]}
+				selected={[]}
+				onSelectChange={vi.fn()}
+				onFilter={vi.fn(() => [])}
+			/>
+		);
+
+		expect(container).toMatchSnapshot();
+	});
 });
