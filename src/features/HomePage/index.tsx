@@ -19,7 +19,7 @@ export function HomeInner({ prefectures }: Props) {
 
 	return (
 		<Wrap>
-			<h1>Title</h1>
+			<h1>Resas Preview</h1>
 			<Grid>
 				<Section>
 					<h2>都道府県</h2>
