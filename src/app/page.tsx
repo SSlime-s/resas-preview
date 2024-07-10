@@ -2,10 +2,10 @@ import { styled } from "@kuma-ui/core";
 
 import { HomeInner } from "@/features/HomePage";
 
-import { getDirect } from "./api/prefs/route";
+import { getPrefsDirect } from "./api/prefs/getPrefsDirect";
 
 export default async function Home() {
-	const prefectures = await getDirect();
+	const prefectures = await getPrefsDirect();
 
 	return (
 		<Main>
