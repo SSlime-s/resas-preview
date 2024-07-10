@@ -19,12 +19,15 @@ interface Props<T extends Key> {
 		value: string,
 		options: Readonly<Option<T>[]>
 	): Readonly<Option<T>[]>;
+
+	placeholder?: string;
 }
 export function FilterableCheckboxGroup<T extends Key>({
 	options,
 	selected,
 	onSelectChange,
 	onFilter,
+	placeholder,
 }: Props<T>) {
 	const [filter, setFilter] = useState("");
 	const filteredOptions = useMemo(
@@ -52,7 +55,11 @@ export function FilterableCheckboxGroup<T extends Key>({
 
 	return (
 		<Wrap>
-			<FilterInput value={filter} onChange={onFilterChange} />
+			<FilterInput
+				value={filter}
+				onChange={onFilterChange}
+				placeholder={placeholder}
+			/>
 
 			<Scrollable>
 				{filteredOptions.map(({ label, value }) => (
@@ -75,12 +82,15 @@ const Wrap = styled.div`
 	overflow: hidden;
 	height: 100%;
 	gap: 0.5rem;
+	padding: 4px;
 `;
 
 const Scrollable = styled.div`
 	display: grid;
 	grid-auto-flow: row;
 	overflow-y: auto;
+
+	padding: 4px;
 `;
 
 const CheckBoxWithOnChange = React.memo(
