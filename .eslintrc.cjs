@@ -64,11 +64,14 @@ module.exports = {
 			{ prefer: "type-imports" },
 		],
 		"func-style": ["error", "declaration"],
-		"react/jsx-curly-brace-presence": ["error", {
-			props: "never",
-			children: "never",
-			propElementValues: "always",
-		}],
+		"react/jsx-curly-brace-presence": [
+			"error",
+			{
+				props: "never",
+				children: "never",
+				propElementValues: "always",
+			},
+		],
 	},
 	ignorePatterns: ["node_modules"],
 	settings: {
