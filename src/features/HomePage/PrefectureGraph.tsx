@@ -16,6 +16,7 @@ import {
 import { COLORS_HEX } from "@/app/utils/colors";
 import { formatCommaSeparate } from "@/app/utils/formatCommaSeparate";
 import { Tabs } from "@/components/Tabs";
+import { useCssVariable } from "@/hooks/useCssVariable";
 
 import { usePrefecturePopulation } from "./usePrefecturePopulation";
 
@@ -27,6 +28,7 @@ interface Props {
 }
 export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 	const [graphKey, setGraphKey] = useState("総人口");
+	const cssVariable = useCssVariable(["--foreground", "--background-sub"]);
 
 	const prefectureMap = useMemo(() => {
 		return Object.fromEntries(prefectures.map((pref) => [pref.code, pref]));
@@ -153,6 +155,7 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 										position: "insideBottomRight",
 										offset: -12,
 									}}
+									stroke={cssVariable["--foreground"]}
 								/>
 								<YAxis
 									label={{
@@ -162,12 +165,19 @@ export function PrefectureGraph({ targetCodes, prefectures }: Props) {
 									}}
 									tickFormatter={formatCommaSeparate}
 									padding={{ top: 30 }}
+									stroke={cssVariable["--foreground"]}
 								/>
 								<Tooltip
 									formatter={(value: number) =>
 										`${formatCommaSeparate(value)}人`
 									}
 									labelFormatter={(value: number) => `${value}年`}
+									wrapperStyle={{
+										background: cssVariable["--background-sub"],
+									}}
+									contentStyle={{
+										background: cssVariable["--background-sub"],
+									}}
 								/>
 								<Legend />
 								{targetCodes.map((code, index) => (
