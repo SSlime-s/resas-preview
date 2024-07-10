@@ -89,6 +89,7 @@ const Scrollable = styled.div`
 	display: grid;
 	grid-auto-flow: row;
 	overflow-y: auto;
+	gap: 0.125rem;
 
 	padding: 4px;
 `;
