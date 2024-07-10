@@ -216,8 +216,12 @@ const EmptyMessage = styled.div`
 	grid-row: 3;
 	place-self: center;
 	text-align: center;
-	font-size: 1.25rem;
-	color: var(--foreground-sub);
+	color: var(--foreground-muted);
+	font-size: 1rem;
+
+	@media (min-width: t("breakpoints.screen2")) {
+		font-size: 1.25rem;
+	}
 `;
 
 const Loading = styled.div`
