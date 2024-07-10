@@ -10,6 +10,7 @@
 	--loading: #f0f0f080;
 
 	--radius: 0.5rem;
+	--radius-sm: 0.25rem;
 }
 
 @media (prefers-color-scheme: dark) {

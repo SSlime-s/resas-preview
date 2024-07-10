@@ -28,7 +28,7 @@ export function HomeInner({ prefectures }: Props) {
 						selected={selected}
 						onSelectChange={setSelected}
 						onFilter={onFilter}
-						placeholder={"都道府県を検索"}
+						placeholder="都道府県を検索"
 					/>
 				</Section>
 				<PrefectureGraph prefectures={prefectures} targetCodes={selected} />

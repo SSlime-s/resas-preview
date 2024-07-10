@@ -5,25 +5,30 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {}
 export function FilterInput({ ...props }: Props) {
 	return (
 		<Wrap>
-			<MdSearch size={18} />
+			<MdSearch size={18} title="検索" />
 			<Input type="search" {...props} />
 		</Wrap>
 	);
 }
 
-const Wrap = styled.div`
+const Wrap = styled.label`
 	display: grid;
 	grid-template-columns: max-content 1fr;
 	align-items: center;
 
-	border: 1px solid var(--foreground);
 	gap: 0.25rem;
 	padding: 0.25rem;
+	padding-left: 0.5rem;
+
+	cursor: default;
+
+	background: var(--background);
+
+	border-radius: var(--radius-sm);
 
 	&:focus-within {
 		outline: auto;
 		outline: auto -webkit-focus-ring-color;
-		outline-offset: 3px;
 		box-shadow: 0 0 0 5px Canvas;
 	}
 `;

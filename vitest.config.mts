@@ -12,5 +12,5 @@ export default defineConfig({
 			"@": path.resolve(__dirname, "src"),
 		},
 	},
-	plugins: [react(), KumaUI({ wasm: true })],
+	plugins: [react(), KumaUI()],
 });

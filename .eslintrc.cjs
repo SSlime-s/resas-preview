@@ -64,6 +64,10 @@ module.exports = {
 			{ prefer: "type-imports" },
 		],
 		"func-style": ["error", "declaration"],
+		"react/jsx-curly-brace-presence": [
+			"error",
+			{ props: "never", children: "never" },
+		],
 	},
 	ignorePatterns: ["node_modules"],
 	settings: {
