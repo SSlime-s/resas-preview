@@ -29,6 +29,25 @@ const Html = styled.html`
 	background: var(--background);
 	height: 100%;
 
+	scrollbar-width: thin;
+	scrollbar-color: var(--forground-muted) transparent;
+	* {
+		&::-webkit-scrollbar-track {
+			border-radius: var(--radius-sm);
+			background: transparent;
+		}
+
+		&::-webkit-scrollbar {
+			width: 6px;
+			background: transparent;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			border-radius: var(--radius-sm);
+			background: var(--foreground-muted);
+		}
+	}
+
 	h1 {
 		font-size: 1.2rem;
 
