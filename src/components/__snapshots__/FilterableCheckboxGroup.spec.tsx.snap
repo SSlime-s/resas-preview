@@ -5,35 +5,69 @@ exports[`Components/FilterableCheckboxGroup > スナップショット 1`] = `
   <div
     class="🐻-3806325052"
   >
-    <label
-      class="🐻-92457733"
+    <div
+      class="🐻-3526033238"
     >
-      <svg
-        fill="currentColor"
-        height="18"
-        stroke="currentColor"
-        stroke-width="0"
-        viewBox="0 0 24 24"
-        width="18"
-        xmlns="http://www.w3.org/2000/svg"
+      <label
+        class="🐻-92457733"
       >
-        <title>
-          検索
-        </title>
-        <path
-          d="M0 0h24v24H0z"
-          fill="none"
+        <svg
+          fill="currentColor"
+          height="18"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 24 24"
+          width="18"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>
+            検索
+          </title>
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          />
+          <path
+            d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+          />
+        </svg>
+        <input
+          class="🐻-66788598"
+          type="search"
+          value=""
         />
-        <path
-          d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-        />
-      </svg>
-      <input
-        class="🐻-66788598"
-        type="search"
-        value=""
-      />
-    </label>
+      </label>
+      <button
+        class="🐻-1441227311"
+      >
+        1
+         件選択中
+        <span
+          class="🐻-1172147898"
+        >
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>
+              全選択解除
+            </title>
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
     <div
       class="🐻-232463286"
       data-empty="false"
@@ -151,35 +185,39 @@ exports[`Components/FilterableCheckboxGroup > スナップショット: no item 
   <div
     class="🐻-3806325052"
   >
-    <label
-      class="🐻-92457733"
+    <div
+      class="🐻-3526033238"
     >
-      <svg
-        fill="currentColor"
-        height="18"
-        stroke="currentColor"
-        stroke-width="0"
-        viewBox="0 0 24 24"
-        width="18"
-        xmlns="http://www.w3.org/2000/svg"
+      <label
+        class="🐻-92457733"
       >
-        <title>
-          検索
-        </title>
-        <path
-          d="M0 0h24v24H0z"
-          fill="none"
+        <svg
+          fill="currentColor"
+          height="18"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 24 24"
+          width="18"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>
+            検索
+          </title>
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          />
+          <path
+            d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+          />
+        </svg>
+        <input
+          class="🐻-66788598"
+          type="search"
+          value=""
         />
-        <path
-          d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-        />
-      </svg>
-      <input
-        class="🐻-66788598"
-        type="search"
-        value=""
-      />
-    </label>
+      </label>
+    </div>
     <div
       class="🐻-232463286"
       data-empty="true"

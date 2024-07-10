@@ -3,6 +3,7 @@
 import { styled } from "@kuma-ui/core";
 import { useCallback, useMemo, useState, type Key } from "react";
 import React from "react";
+import { MdClear } from "react-icons/md";
 
 import { CheckBox } from "./CheckBox";
 import { FilterInput } from "./FilterInput";
@@ -55,13 +56,26 @@ export function FilterableCheckboxGroup<T extends Key>({
 		[selected, onSelectChange]
 	);
 
+	const selectedCount = selected.length;
+	const clear = useCallback(() => onSelectChange([]), [onSelectChange]);
+
 	return (
 		<Wrap>
-			<FilterInput
-				value={filter}
-				onChange={onFilterChange}
-				placeholder={placeholder}
-			/>
+			<Header>
+				<FilterInput
+					value={filter}
+					onChange={onFilterChange}
+					placeholder={placeholder}
+				/>
+				{selectedCount > 0 && (
+					<SelectedCount onClick={clear}>
+						{selectedCount} 件選択中
+						<Icon>
+							<MdClear title="全選択解除" />
+						</Icon>
+					</SelectedCount>
+				)}
+			</Header>
 
 			<Scrollable data-empty={filteredOptions.length === 0}>
 				{filteredOptions.map(({ label, value }) => (
@@ -88,6 +102,43 @@ const Wrap = styled.div`
 	height: 100%;
 	gap: 0.5rem;
 	padding: 4px;
+`;
+
+const Header = styled.div`
+	display: grid;
+	grid-template-columns: 1fr max-content;
+	gap: 0.5rem;
+
+	@media (min-width: t("breakpoints.screen2")) {
+		width: 320px;
+	}
+`;
+
+const SelectedCount = styled.button`
+	display: grid;
+	grid-auto-flow: column;
+	place-items: center;
+	gap: 0.25rem;
+
+	padding: 4px 6px 4px 8px;
+
+	border: none;
+	border-radius: var(--radius-sm);
+	background: var(--background);
+	color: var(--foreground);
+	cursor: pointer;
+	font-variant-numeric: tabular-nums;
+
+	&:hover {
+		color: var(--foreground);
+	}
+`;
+
+const Icon = styled.span`
+	display: grid;
+	place-items: center;
+	padding-left: 4px;
+	border-left: 2px solid var(--foreground-muted);
 `;
 
 const Scrollable = styled.div`
