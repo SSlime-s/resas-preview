@@ -35,7 +35,8 @@ exports[`Components/FilterableCheckboxGroup > スナップショット 1`] = `
       />
     </label>
     <div
-      class="🐻-336135186"
+      class="🐻-232463286"
+      data-empty="false"
     >
       <label
         class="🐻-3595835307"
@@ -180,10 +181,11 @@ exports[`Components/FilterableCheckboxGroup > スナップショット: no item 
       />
     </label>
     <div
-      class="🐻-336135186"
+      class="🐻-232463286"
+      data-empty="true"
     >
       <div
-        class="🐻-2943596773"
+        class="🐻-2431275478"
       >
         No items
       </div>

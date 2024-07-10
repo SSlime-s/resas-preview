@@ -63,7 +63,7 @@ export function FilterableCheckboxGroup<T extends Key>({
 				placeholder={placeholder}
 			/>
 
-			<Scrollable>
+			<Scrollable data-empty={filteredOptions.length === 0}>
 				{filteredOptions.map(({ label, value }) => (
 					<CheckBoxWithOnChange
 						key={value}
@@ -97,10 +97,16 @@ const Scrollable = styled.div`
 	gap: 0.125rem;
 
 	padding: 4px;
+
+	&[data-empty="false"] {
+		grid-auto-rows: max-content;
+	}
+	&[data-empty="true"] {
+		place-items: center;
+	}
 `;
 
 const Empty = styled.div`
-	place-self: center;
 	text-align: center;
 	color: var(--foreground-muted);
 `;
