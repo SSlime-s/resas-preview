@@ -22,7 +22,7 @@ export function HomeInner({ prefectures }: Props) {
 			<h1>Resas Preview</h1>
 			<Grid>
 				<Section>
-					<h2>都道府県</h2>
+					<VisuallyHiddenTitle>都道府県</VisuallyHiddenTitle>
 					<FilterableCheckboxGroup
 						options={options}
 						selected={selected}
@@ -63,10 +63,21 @@ const Section = styled.section`
 	padding: 1rem 1rem;
 	overflow: hidden;
 	display: grid;
-	grid-template-rows: max-content 1fr;
+	grid-template-rows: 1fr;
 	gap: 0.5rem;
 
 	background: var(--background-sub);
 	color: var(--foreground);
 	border-radius: var(--radius);
+`;
+
+const VisuallyHiddenTitle = styled.h2`
+	position: absolute;
+	width: 1;
+	height: 1;
+	overflow: hidden;
+	margin: -1;
+	padding: 0;
+	clip: rect(0 0 0 0);
+	border: 0;
 `;
